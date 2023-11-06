@@ -1,25 +1,43 @@
 <?php
+include_once 'parser.php';
 class getYtVideo {
     public $videoLink;
-    private $watch = 'https://www.youtube.com/';
+    public $videoQuality;
     function setVideoLink($videoLink){
         $this->videoLink = $videoLink;
     }
 
+    function setVideoQuality($videoQuality){
+        $this->videoQuality = $videoQuality;
+    }
+
+    function getVideo(){
+        $vid = "https://www.youtube.com/".$this->videoLink;
+        if($this->videoQuality === "best"){
+            exec('cd tmp_vid');
+            while (shell_exec('yt-dlp -f 22 "'.$vid.'"')){
+                return "Downloading video";
+            }
+
+        } else {
+            return "Please set quality";
+        }
+    }
+
+    function loadVideo(){
+
+    }
+
     function getVideoTitle(){
         $vid = "https://www.youtube.com/".$this->videoLink;
-        //$vid = "https://www.youtube.com/watch?v=3nLrkkl6mtU";
         $ytData = file_get_contents($vid);
-//        $tmpYt = fopen("yt.txt", "w") or die("Unable to open file!");
-//        fwrite($tmpYt,$ytData);
-//        fclose($tmpYt);
 
         preg_match_all('/"title":\{"simpleText":"([^"]+(?:[^"]+[^"]+)*)"/', $ytData, $vidTitle, PREG_PATTERN_ORDER);
 
         if (isset($vidTitle[1][0])) {
-            $finalVidTitle = $vidTitle[1][0]; // Get the first title from the array
-            return $finalVidTitle;
+            return $vidTitle[1][0];
         } else {
-            return "No title found"; // Handle the case where no title is found
-        }    }
+            return "No title found";
+        }
+    }
 }

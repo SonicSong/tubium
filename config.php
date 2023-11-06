@@ -2,5 +2,5 @@
   'hostname' => '',
   'login' => '',
   'password' => '',
-  'name' => 'sd',
+  'name' => '',
 );

@@ -1,6 +1,6 @@
 ## Tubium
 
-# WORK IN PROGRESS!!!
+# This is an school project
 A YouTube frontend to run locally.
 
 - It downloads video.
