@@ -25,7 +25,7 @@ function mainPage(){
         preg_match('/watch\?v=(\w+)/', $ytToFix, $matches);
         $valueToCheck[] = $matches[1]; // Append the matched video ID to the array.
     }
-    var_dump($valueToCheck);
+    //var_dump($valueToCheck);
 
     $resultVidThumb = [];
 

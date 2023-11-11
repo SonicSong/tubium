@@ -11,7 +11,7 @@
     <div>
         <div class="header">
             <h2>Tubium</h2>
-            <form method="post" action="src/query.php">
+            <form method="post" action="src/query_disp.php">
                 <input type="text" name="query">
                 <input type="submit" value="Search">
             </form>
@@ -21,6 +21,8 @@
                 <p>Playlists</p>
             </div>
             <div class="main">
+                <p>Thumbnails, Titles and Links can be mismatched (Currently working on an fix)</p>
+                <div class="videos">
                 <?php
                 error_reporting(E_ALL);
                 ini_set('display_errors', 1);
@@ -29,6 +31,7 @@
 
                 mainPage();
                 ?>
+                </div>
             </div>
         </div>
     </div>

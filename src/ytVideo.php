@@ -1,5 +1,5 @@
 <?php
-include_once 'parser.php';
+//include_once 'parser.php';
 class getYtVideo {
     public $videoLink;
     public $videoQuality;
@@ -13,15 +13,19 @@ class getYtVideo {
 
     function getVideo(){
         $vid = "https://www.youtube.com/".$this->videoLink;
-        if($this->videoQuality === "best"){
-            exec('cd tmp_vid');
-            while (shell_exec('yt-dlp -f 22 "'.$vid.'"')){
-                return "Downloading video";
-            }
+        chdir('tmp_vid');
+        $cmd = 'yt-dlp -P /Users/roberts/Desktop/tmp_vid -f 22 "'.$vid.'"';
 
-        } else {
-            return "Please set quality";
+        while (@ ob_end_flush()); // end all output buffers if any
+
+        $proc = popen($cmd, 'r');
+        echo '<pre>';
+        while (!feof($proc))
+        {
+            echo fread($proc, 4096);
+            @ flush();
         }
+        echo '</pre>';
     }
 
     function loadVideo(){

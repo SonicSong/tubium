@@ -30,17 +30,6 @@ if (isset($_GET['video_id'])) {
         </select>
         <input type="submit" value="Download">
     </form>
-    <?php
-    include_once 'ytVideo.php';
-
-    if($_SERVER["REQUEST_METHOD"] === "POST"){
-        echo "NIE :D";
-        $video = new getYtVideo();
-        $video->setVideoQuality($_REQUEST['quality']);
-        $video->setVideoLink($videoId);
-        $video->getVideo();
-    }
-    ?>
 </div>
 <div class="video_disp">
 
